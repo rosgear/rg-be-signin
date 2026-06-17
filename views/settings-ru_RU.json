@@ -1,0 +1,264 @@
+[
+    {
+        "xtype": "container",
+        "layout": "anchor",
+        "padding": 5,
+        "defaults": {
+            "labelWidth": 210,
+            "labelAlign": "right"
+        },
+        "items": [
+            {
+                "xtype": "fieldset",
+                "title": "Проверять",
+                "defaults": {
+                    "labelWidth": 240,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "xtype": "checkbox",
+                        "id": "setting-check-attempts",
+                        "ui": "switch",
+                        "fieldLabel": "учитывать попытки авторизации",
+                        "tooltip": "Учитывает попытки (включает счётчик) авторизации пользователя",
+                        "name": "checkAttempts",
+                        "listeners": {"change": "onCheckAttempts"},
+                        "checked": false
+                    },
+                    {
+                        "xtype": "checkbox",
+                        "ui": "switch",
+                        "fieldLabel": "вход пользователя на устройстве",
+                        "tooltip": "Проверка устройства пользователя с которого была успешна авторизация",
+                        "name": "checkDevice",
+                        "checked": true
+                    }
+                ]
+            },
+            {
+                "xtype": "numberfield",
+                "id": "setting-max-attempts",
+                "fieldLabel": "Количество попыток",
+                "tooltip": "Количество попыток авторизации пользователя ",
+                "name": "maxAttempts",
+                "width": 290,
+                "value": 3,
+                "maxLength" : 3,
+                "allowBlank": false
+            },
+            {
+                "xtype": "textfield",
+                "fieldLabel": "E-mail получателя уведомлений",
+                "tooltip": "E-mail адреса (разделитель \",\") на которые приходят уведомления о ходе авторизации пользователей",
+                "name": "mail",
+                "anchor" : "100%",
+                "allowBlank": true
+            },
+            {
+                "xtype": "fieldset",
+                "title": "Шаблон писем",
+                "defaults": {
+                    "labelWidth": 200,
+                    "labelAlign": "right",
+                    "anchor": "100%"
+                },
+                "items": ["@templateMail", "@templateUserMail"]
+            },
+            {
+                "xtype": "label",
+                "ui": "fieldset-comment",
+                "html": "Если шаблон письма не указан, письмо не будет отправлено"
+            },
+            {
+                "xtype": "checkbox",
+                "ui": "switch",
+                "fieldLabel": "запись действий в журнал аудита",
+                "name": "auditWrite",
+                "checked": true
+            },
+            {
+                "xtype": "label",
+                "ui": "comment",
+                "margin": "20px -5px -9px -5px",
+                "html": "авторизация пользователя вызывает события:"
+            },
+            {
+                "xtype": "label",
+                "ui": "header",
+                "text": "Успех авторизации"
+            },
+            {
+                "xtype": "fieldset",
+                "title": "Отправить письмо на e-mail",
+                "defaults": {
+                    "xtype": "checkbox",
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "пользователю",
+                        "name": "sendUserMailOnSuccess"
+                    },
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "получателю уведомлений",
+                        "name": "sendMailOnSuccess"
+                    }
+                ]
+            },
+            {
+                "xtype": "label",
+                "ui": "header",
+                "text": "Ошибка авторизации (лимит не исчерпан)"
+            },
+            {
+                "xtype": "fieldset",
+                "title": "Отправить письмо на e-mail",
+                "defaults": {
+                    "xtype": "checkbox",
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "пользователю",
+                        "name": "sendUserMailOnError"
+                    },
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "получателю уведомлений",
+                        "name": "sendMailOnError"
+                    }
+                ]
+            },
+            {
+                "xtype": "label",
+                "ui": "header",
+                "text": "Ошибка авторизации (лимит исчерпан)"
+            },
+            {
+                "xtype": "fieldset",
+                "id": "setting-fs-send-mail",
+                "title": "Отправить письмо на e-mail",
+                "defaults": {
+                    "xtype": "checkbox",
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "пользователю",
+                        "name": "sendUserMailOnALR"
+                    },
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "получателю уведомлений",
+                        "name": "sendMailOnALR"
+                    }
+                ]
+            },
+            {
+                "xtype": "fieldset",
+                "id": "setting-fs-disable-id",
+                "title": "Заблокировать IP-адрес пользователя",
+                "defaults": {
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "xtype": "checkbox",
+                        "ui": "switch",
+                        "fieldLabel": "заблокировать",
+                        "name": "disabledUserIp",
+                        "checked": true
+                    },
+                    {
+                        "xtype": "numberfield",
+                        "fieldLabel": "на время, сек.",
+                        "tooltip": "Время (в секундах) на которое будет заблокирован IP-адрес пользователя",
+                        "name": "disabledUserIpTime",
+                        "width": 290,
+                        "maxLength" : 3,
+                        "value": 0,
+                        "allowBlank": true
+                    }
+                ]
+            },
+            {
+                "xtype": "fieldset",
+                "id": "setting-fs-black-list",
+                "title": "Добавить IP-адрес пользователя",
+                "defaults": {
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "xtype": "checkbox",
+                        "ui": "switch",
+                        "fieldLabel": "в черный список",
+                        "name": "addToBlackList",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "xtype": "label",
+                "ui": "header",
+                "text": "Вход пользователя на новом устройстве"
+            },
+            {
+                "xtype": "fieldset",
+                "title": "Отправить письмо на e-mail",
+                "defaults": {
+                    "xtype": "checkbox",
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "пользователю",
+                        "name": "sendUserMailOnNewDevice"
+                    },
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "получателю уведомлений",
+                        "name": "sendMailOnNewDevice"
+                    }
+                ]
+            },
+            {
+                "xtype": "fieldset",
+                "title": "Запретить авторизацию пользователя на новом устройстве",
+                "defaults": {
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "xtype": "checkbox",
+                        "ui": "switch",
+                        "fieldLabel": "запретить",
+                        "name": "banOnNewDevice",
+                        "checked": false
+                    }
+                ]
+            }
+        ]
+    }
+]

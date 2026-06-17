@@ -1,0 +1,19 @@
+<?php
+/**
+ * Нижний колонтитул формы авторизации.
+ * 
+ * Этот файл является частью модуля "Авторизация в Панели управления".
+ * 
+ * @copyright Copyright (c) 2015 RosGear
+ * @license https://rosgear.ru/license/
+ */
+
+$version = Ge::$app->version;
+$edition = $version->getEdition();
+?>
+<div class="g-form__footer">
+    <div class="g-form__footer-wrap">
+        <span class="copyright">© <?= $edition->getDate('Y') ?>, <a target="_blank" href="https://rosgear.ru/">RosGear</a></span>, 
+        <span class="version"> <a target="_blank" href="<?= $edition->resource ?>"><?= $version->getEdition()->getReleaseName(Ge::$app->language->isRu()) ?></a></span>
+    </div>
+</div>

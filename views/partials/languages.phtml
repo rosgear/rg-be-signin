@@ -1,0 +1,36 @@
+<?php
+/**
+ * Выбор языка.
+ * 
+ * Этот файл является частью модуля "Авторизация в Панели управления".
+ * 
+ * @copyright Copyright (c) 2015 RosGear
+ * @license https://rosgear.ru/license/
+ * 
+ * @var string $language
+ * @var string $defLanguage
+ * @var array $languages
+ */
+
+use Ge\Helper\Url;
+use Ge\Helper\Html;
+
+$language    = Ge::$app->language->tag;
+$defLanguage = Ge::$app->language->default;
+$languages   = Ge::$app->language->available->forBackend(true);
+
+if (sizeof($languages) > 1) :
+?>
+<div class="g-container__langs">
+    <ul>
+<?php foreach ($languages as $value) : $isLocale = $value['tag'] == $language; ?>
+        <li><?= Html::a($value['shortName'], null, [
+                        'href'  => Url::toBackend(['', 'langSlug' => $value['slug']]),
+                        'class' => $isLocale ? 'active' : '',
+                        'lang'  => $value['slug'],
+                        'title' => $value['name']
+        ]) ?></li>
+<?php endforeach ?>
+    </ul>
+</div>
+<?php endif ?>

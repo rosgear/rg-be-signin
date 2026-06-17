@@ -1,0 +1,264 @@
+[
+    {
+        "xtype": "container",
+        "layout": "anchor",
+        "padding": 5,
+        "defaults": {
+            "labelWidth": 210,
+            "labelAlign": "right"
+        },
+        "items": [
+            {
+                "xtype": "fieldset",
+                "title": "Check",
+                "defaults": {
+                    "labelWidth": 240,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "xtype": "checkbox",
+                        "id": "setting-check-attempts",
+                        "ui": "switch",
+                        "fieldLabel": "consider authorization attempts",
+                        "tooltip": "Accounts for attempts (turns on the counter) of user authorization",
+                        "name": "checkAttempts",
+                        "listeners": {"change": "onCheckAttempts"},
+                        "checked": false
+                    },
+                    {
+                        "xtype": "checkbox",
+                        "ui": "switch",
+                        "fieldLabel": "user login on the device",
+                        "tooltip": "Checking the device of the user from which authorization was successful",
+                        "name": "checkDevice",
+                        "checked": true
+                    }
+                ]
+            },
+            {
+                "xtype": "numberfield",
+                "id": "setting-max-attempts",
+                "fieldLabel": "Number of attempts",
+                "tooltip": "Number of user authorization attempts ",
+                "name": "maxAttempts",
+                "width": 290,
+                "value": 3,
+                "maxLength" : 3,
+                "allowBlank": false
+            },
+            {
+                "xtype": "textfield",
+                "fieldLabel": "Notification recipient's email",
+                "tooltip": "E-mail addresses (separator \",\") to which notifications about the progress of user authorization are received",
+                "name": "mail",
+                "anchor" : "100%",
+                "allowBlank": true
+            },
+            {
+                "xtype": "fieldset",
+                "title": "Letter template",
+                "defaults": {
+                    "labelWidth": 200,
+                    "labelAlign": "right",
+                    "anchor": "100%"
+                },
+                "items": ["@templateMail", "@templateUserMail"]
+            },
+            {
+                "xtype": "label",
+                "ui": "fieldset-comment",
+                "html": "If the email template is not specified, the email will not be sent"
+            },
+            {
+                "xtype": "checkbox",
+                "ui": "switch",
+                "fieldLabel": "recording actions in the audit log",
+                "name": "auditWrite",
+                "checked": true
+            },
+            {
+                "xtype": "label",
+                "ui": "comment",
+                "margin": "20px -5px -9px -5px",
+                "html": "user authorization raises events:"
+            },
+            {
+                "xtype": "label",
+                "ui": "header",
+                "text": "Authorization success"
+            },
+            {
+                "xtype": "fieldset",
+                "title": "Send an e-mail",
+                "defaults": {
+                    "xtype": "checkbox",
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "to user",
+                        "name": "sendUserMailOnSuccess"
+                    },
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "to notification recipient",
+                        "name": "sendMailOnSuccess"
+                    }
+                ]
+            },
+            {
+                "xtype": "label",
+                "ui": "header",
+                "text": "Authorization error (limit not reached)"
+            },
+            {
+                "xtype": "fieldset",
+                "title": "Send an e-mail",
+                "defaults": {
+                    "xtype": "checkbox",
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "to user",
+                        "name": "sendUserMailOnError"
+                    },
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "to notification recipient",
+                        "name": "sendMailOnError"
+                    }
+                ]
+            },
+            {
+                "xtype": "label",
+                "ui": "header",
+                "text": "Authorization error (limit exceeded)"
+            },
+            {
+                "xtype": "fieldset",
+                "id": "setting-fs-send-mail",
+                "title": "Send an e-mail",
+                "defaults": {
+                    "xtype": "checkbox",
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "to user",
+                        "name": "sendUserMailOnALR"
+                    },
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "to notification recipient",
+                        "name": "sendMailOnALR"
+                    }
+                ]
+            },
+            {
+                "xtype": "fieldset",
+                "id": "setting-fs-disable-id",
+                "title": "Block user's IP address",
+                "defaults": {
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "xtype": "checkbox",
+                        "ui": "switch",
+                        "fieldLabel": "block",
+                        "name": "disabledUserIp",
+                        "checked": true
+                    },
+                    {
+                        "xtype": "numberfield",
+                        "fieldLabel": "for time, sec.",
+                        "tooltip": "Time (in seconds) for which the user's IP address will be blocked",
+                        "name": "disabledUserIpTime",
+                        "width": 290,
+                        "maxLength" : 3,
+                        "value": 0,
+                        "allowBlank": true
+                    }
+                ]
+            },
+            {
+                "xtype": "fieldset",
+                "id": "setting-fs-black-list",
+                "title": "Add user IP Address",
+                "defaults": {
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "xtype": "checkbox",
+                        "ui": "switch",
+                        "fieldLabel": "into a black list",
+                        "name": "addToBlackList",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "xtype": "label",
+                "ui": "header",
+                "text": "User login on a new device"
+            },
+            {
+                "xtype": "fieldset",
+                "title": "Send an e-mail",
+                "defaults": {
+                    "xtype": "checkbox",
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "to user",
+                        "name": "sendUserMailOnNewDevice"
+                    },
+                    {
+                        "ui": "switch",
+                        "checked": true,
+                        "fieldLabel": "to notification recipient",
+                        "name": "sendMailOnNewDevice"
+                    }
+                ]
+            },
+            {
+                "xtype": "fieldset",
+                "title": "Deny user authorization on a new device",
+                "defaults": {
+                    "labelWidth": 197,
+                    "labelAlign": "right"
+                },
+                "items": [
+                    {
+                        "xtype": "checkbox",
+                        "ui": "switch",
+                        "fieldLabel": "ban",
+                        "name": "banOnNewDevice",
+                        "checked": false
+                    }
+                ]
+            }
+        ]
+    }
+]

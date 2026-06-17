@@ -1,0 +1,112 @@
+<?php
+/**
+ * Форма авторизации.
+ * 
+ * Этот файл является частью модуля "Авторизация в Панели управления".
+ * 
+ * @copyright Copyright (c) 2015 RosGear
+ * @license https://rosgear.ru/license/
+ * 
+ * @var \Ge\View\View $this
+ * @var string $formTitle
+ * @var string $formUrl
+ * @var callable $translate
+ */
+
+use Ge\Helper\Url;
+use Ge\Helper\Html;
+?>
+    <div id="form-animated" class="g-form wow flipInY animated" animated-failure="swing" animated="flipInY">
+    <div class="g-form__top"><?= $appTitle ?></div>
+    <div class="g-form__wrapper">
+        <div class="g-form__subtitle"><?= $formTitle ?></div>
+        <form method="post" action="<?= $formUrl ?>" onsubmit="return false" id="signin-form">
+            <?= Html::csrfInput() ?>
+
+            <div id="g-notify" class="g-notify">
+                <div class="g-notify__notice">
+                    <span class="g-notify__icon"></span>
+                    <div></div>
+                </div>
+            </div>
+            <fieldset>
+                <label class="g-label">
+                    <?= Html::textInput('username', null, [
+                        'id'            => 'username',
+                        'class'         => 'input input_username',
+                        'tabindex'      => 1,
+                        'placeholder'   => $translate('Enter the user name'),
+                        'data-validate' => 'true',
+                        'data-min'      => 3,
+                        'data-max'      => 16,
+                        'data-mask'     => '[0-9a-z]',
+                        'data-title'    => $translate('User name')
+                    ]) ?>
+                    <span class="g-label__holder"><?= $translate('User name') ?></span>
+                </label>
+            </fieldset>
+            <fieldset>
+                <label class="g-label">
+                    <?= Html::passwordInput('password', null, [
+                        'id'            => 'password',
+                        'class'         => 'input input_password',
+                        'tabindex'      => 2,
+                        'placeholder'   => $translate('Password'),
+                        'data-validate' => 'true',
+                        'data-title'    => $translate('Password')
+                    ]) ?>
+                    <span class="g-label__holder"><?= $translate('Password') ?></span>
+                </label>
+            </fieldset>
+            <fieldset>
+                <?= Html::a($translate('Sign in'), '#', [
+                    'id'    => 'submit',
+                    'class' => 'g-form__button button_long button_signin',
+                    'title' => $translate('Sign in')
+                ]) ?>
+            </fieldset>
+            <div class="g-form__links">
+                <ul>
+                    <li><?= Html::a($translate('Title recovery account'), null, [
+                        'href'  =>  Url::toBackend('recovery'),
+                        'class' => 'g-form__link icon-user',
+                        'title' => $translate('Title recovery account')
+                    ]) ?></li>
+                    <li><?= Html::a($translate('Technical support'), null, [
+                        'href'   =>  'https://rosgear.ru/',
+                        'class'  => 'g-form__link icon-support',
+                        'target' => '_blank',
+                        'title'  => $translate('Technical support')
+                    ]) ?></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+    <?= $this->render('/partials/form-footer') ?>
+</div>
+<?= $this->render('/partials/languages') ?>
+<script>
+Ext.onReady(function(){
+    new Ge.singleton.form.Form({
+        id: 'signin-form',
+        initConfig: {
+            validator: {
+                msgEmpty: '<?= $translate('You did not fill in the field {0}') ?> ',
+                msgMinLength: '<?= $translate('The value of the field {0} must be greater than {1} characters') ?>',
+                msgMaxLength: '<?= $translate('The value of the field {0} must be less than {1} characters') ?>',
+                msgRange: '<?= $translate('The length of the field value {0} must be between {1} and {2} characters') ?>',
+                msgMask: '<?= $translate('The value of the field {0} contains invalid characters') ?>',
+            }
+        },
+        focus: function() { Ext.get('username').focus(); },
+        onFailure: function () { 
+            let an = Ext.get('form-animated'),
+                anCls = an.getAttribute('animated'),
+                anfCls = an.getAttribute('animated-failure');
+
+            an.removeClass([anCls, anfCls]);
+            setTimeout(function() { an.addClass(anfCls); }, 100);
+        }
+    });
+});
+</script>
