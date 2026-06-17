@@ -1,0 +1,59 @@
+<?php
+/**
+ * Страница "Настройка модуля".
+ * 
+ * Русская локализации.
+ * 
+ * Этот файл является частью модуля веб-приложения RosGear.
+ * 
+ * @copyright Copyright (c) 2015 RosGear
+ * @license https://rosgear.ru/license/
+ */
+?>
+<article>
+    <h1>Настройка модуля "Авторизация в Панели управления"</h1>
+    <div class="g-help-screen g-help-screen--hidable">
+        <img src="<?= $assetsUrl, '/help/settings.png' ?>" />
+    </div>
+    <p>Форму настроек модуля можно вызвать из <a href="<?= $url('index', 'extension:rg.be.config.desk') ?>">Панели конфигурации</a> или из <a href="<?= $url('index', 
+    'extension:rg.be.mp.mmanager') ?>">Менеджера модулей</a>.</p>
+    <h2>Поля формы</h2>
+    <ul class="g-help-list">
+        <li><b>Количество попыток.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><b>E-mail получателя уведомлений.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><b>Запись действий в журнал аудита.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+    </ul>
+
+    <h2>Наборы полей формы</h2>
+    <h3>Проверять</h3>
+    <ul class="g-help-list">
+        <li><b>учитывать попытки авторизации.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><b>вход пользователя на устройстве.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+    </ul>
+
+    <h3>Шаблон писем</h3>
+    <ul class="g-help-list">
+        <li><b>Для получателей уведомлений.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><b>Для пользователей.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
+    </ul>
+
+    <h3>Успешная авторизация</h3>
+    <p>При успешной авторизации письма будут направлены (если установлен флаг): пользователю,  получателю уведомлений.</p>
+
+
+    <h3>Ошибка авторизации (лимит не исчерпан)</h3>
+    <p>При неудачной авторизации, если лимит авторизации не исчерпан, письма будут направлены (если установлен флаг): пользователю,  получателю уведомлений.</p>
+
+    <h3>Ошибка авторизации (лимит исчерпан)</h3>
+    <p>При неудачной авторизации, если лимит авторизации уже исчерпан, письма будут направлены (если установлен флаг): пользователю,  получателю уведомлений.</p>
+
+    <h3>Заблокировать IP-адрес пользователя</h3>
+    <p>Если при неудачной авторизации необходимо заблокировать IP-адрес пользователя, то надо указать:</p>
+    <ul class="g-help-list">
+        <li><b>Заблокировать.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><b>На время.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
+    </ul>
+
+    <h3>Вход пользователя на новом устройстве</h3>
+    <p>Для уведомления на почту о входе пользователя на новом устройстве, необходимо установить флаг: пользователю, получателю уведомлений.</p>
+</article>

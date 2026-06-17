@@ -1,0 +1,58 @@
+<?php
+/**
+ * Страница "Настройка модуля".
+ * 
+ * Английская (британская) локализация.
+ * 
+ * Этот файл является частью модуля веб-приложения RosGear.
+ * 
+ * @copyright Copyright (c) 2015 RosGear
+ * @license https://rosgear.ru/license/
+ */
+?>
+<article>
+    <h1>Customizing module "Authorization in the Control panel"</h1>
+    <div class="g-help-screen g-help-screen--hidable">
+        <img src="<?= $assetsUrl, '/help/settings.png' ?>" />
+    </div>
+    <p>The module settings form can be called from <a href="<?= $url('index', 'extension:rg.be.config.desk') ?>">Configuration panel</a> or from <a href="<?= $url('index', 'extension:rg.be.mp.mmanager') ?>">Module manager</a>.</p>
+    <h2>Form fields</h2>
+    <ul class="g-help-list">
+        <li><b>Number of attempts.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><b>Notification recipient's email.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><b>Recording activities in the audit log.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
+    </ul>
+
+    <h2>Form field sets</h2>
+    <h3>Check</h3>
+    <ul class="g-help-list">
+        <li><b>Consider authorization attempts.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><b>User login on the device.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
+    </ul>
+
+    <h3>Letter template</h3>
+    <ul class="g-help-list">
+        <li><b>For notification recipients.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><b>For users.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
+    </ul>
+
+    <h3>Successful authorization</h3>
+    <p>Upon successful authorization, letters will be sent (if the flag is set): to the user, the recipient of notifications.</p>
+
+
+    <h3>Authorization error (limit not reached)</h3>
+    <p>In case of unsuccessful authorization, if the authorization limit has not been exhausted, letters will be sent (if the flag is set): to the user, the recipient of notifications.</p>
+
+    <h3>Authorization error (limit exceeded)</h3>
+    <p>In case of unsuccessful authorization, if the authorization limit has already been exhausted, the letters will be sent (if the flag is set): to the user, the recipient of notifications.</p>
+
+    <h3>Block user's IP address</h3>
+    <p>If it is necessary to block the user's IP address in case of unsuccessful authorization, then you must specify:</p>
+    <ul class="g-help-list">
+        <li><b>Disabled.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><b>For a while.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
+    </ul>
+
+    <h3>User login on a new device</h3>
+    <p>To notify by mail about user login on a new device, you must set the flag: user, recipient of notifications.</p>
+</article>
